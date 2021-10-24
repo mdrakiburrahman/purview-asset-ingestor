@@ -1,5 +1,6 @@
 from flask import Flask, request
 from app_service import AppService
+from pprint import *
 
 app = Flask(__name__)
 appService = AppService();
@@ -9,24 +10,28 @@ appService = AppService();
 def home():
     return "Service is running."
 
-
-@app.route('/api/tasks', methods=['GET'])
-def tasks():
-    return appService.get_tasks()
-
-@app.route('/api/task', methods=['POST'])
-def create_task():
+@app.route('/api/assets', methods=['POST'])
+def create_assets():
     request_data = request.get_json()
-    task = request_data['task']
-    return appService.create_task(task)
+    appService.printer("Client Request", request_data)
+    return appService.create_assets(request_data)
 
-
-@app.route('/api/task', methods=['PUT'])
-def update_task():
+@app.route('/api/scan', methods=['POST'])
+def run_scan():
     request_data = request.get_json()
-    return appService.update_task(request_data['task'])
+    appService.printer("Client Request", request_data)
+    return appService.run_scan(request_data["dataSourceName"], request_data["scanName"])
 
+@app.route('/api/glossary', methods=['GET'])
+def get_default_glossary_guid():
+    return appService.get_default_glossary_guid()
 
-@app.route('/api/task/<int:id>', methods=['DELETE'])
-def delete_task(id):
-    return appService.delete_task(id)
+@app.route('/api/glossary/terms', methods=['POST'])
+def create_glossary_terms():
+    request_data = request.get_json()
+    appService.printer("Client Request", request_data)
+    return appService.create_glossary_terms(request_data)
+
+@app.route('/api/glossary/terms', methods=['GET'])
+def get_default_glossary_terms():
+    return appService.get_default_glossary_terms()
