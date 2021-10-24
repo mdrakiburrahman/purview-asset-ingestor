@@ -1,4 +1,4 @@
-# Azure Purview - Containerized app for declaring custom classification labels to assets <!-- omit in toc -->
+# Azure Purview - Containerized app for declaring custom sensitivity labels to assets as glossary terms <!-- omit in toc -->
 
 A containerized [Python flask app](https://flask.palletsprojects.com/en/2.0.x/) that exposes an API for interacting with Azure Purview to implement Business Logic, using:
 
