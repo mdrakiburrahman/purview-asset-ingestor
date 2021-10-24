@@ -15,6 +15,7 @@ A containerized [Python flask app](https://flask.palletsprojects.com/en/2.0.x/) 
   - [Step 2: Create an entire asset chain for an Azure SQL Database, and apply glossary terms to serve as Custom Data Classifications (using a minified JSON)](#step-2-create-an-entire-asset-chain-for-an-azure-sql-database-and-apply-glossary-terms-to-serve-as-custom-data-classifications-using-a-minified-json)
   - [Step 3: Trigger Scan to establish end-to-end asset relationships and have Purview apply Classifications](#step-3-trigger-scan-to-establish-end-to-end-asset-relationships-and-have-purview-apply-classifications)
   - [Step 4: Observe Assets with Custom Sensitivity labels (i.e. glossary terms) applied per column](#step-4-observe-assets-with-custom-sensitivity-labels-ie-glossary-terms-applied-per-column)
+- [Additional Resources](#additional-resources)
 
 #### Overview
 
@@ -187,6 +188,6 @@ And the Asset is labelled at the column level:
 
 As desired.
 
-## Additional Resources
+#### Additional Resources
 
 - [Detecting SQL Column Decryption using Purview, Kafka, Kafdrop and Spark](https://www.rakirahman.me/purview-sql-cle-events-with-kafdrop/)
