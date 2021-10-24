@@ -7,10 +7,10 @@ appService = AppService();
 
 @app.route('/')
 def home():
-    return "App Works!!!"
+    return "Service is running."
 
 
-@app.route('/api/tasks')
+@app.route('/api/tasks', methods=['GET'])
 def tasks():
     return appService.get_tasks()
 
