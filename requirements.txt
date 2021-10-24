@@ -1,3 +1,8 @@
+# REST API libraries
 flask
 python-dotenv
+# Purview Python libraries
+azure-identity 
+azure-purview-catalog
+azure-purview-scanning
 purviewcli==0.1.34

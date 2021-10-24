@@ -1,6 +1,5 @@
 from flask import Flask, request
 from app_service import AppService
-import json
 
 app = Flask(__name__)
 appService = AppService();
