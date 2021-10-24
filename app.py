@@ -22,10 +22,6 @@ def run_scan():
     appService.printer("Client Request", request_data)
     return appService.run_scan(request_data["dataSourceName"], request_data["scanName"])
 
-@app.route('/api/glossary', methods=['GET'])
-def get_default_glossary_guid():
-    return appService.get_default_glossary_guid()
-
 @app.route('/api/glossary/terms', methods=['POST'])
 def create_glossary_terms():
     request_data = request.get_json()
