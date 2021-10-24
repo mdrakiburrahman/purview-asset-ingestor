@@ -17,7 +17,7 @@ A containerized [Python flask app](https://flask.palletsprojects.com/en/2.0.x/) 
   - [Step 4: Observe Assets with Custom Sensitivity labels (i.e. glossary terms) applied per column](#step-4-observe-assets-with-custom-sensitivity-labels-ie-glossary-terms-applied-per-column)
 - [Additional Resources](#additional-resources)
 
-#### Overview
+## Overview
 
 Currently, the three top-level functionalities implemented:
 
@@ -31,7 +31,7 @@ Currently, the three top-level functionalities implemented:
 
 3. **Trigger Scan to establish end-to-end asset relationships and have Purview apply Classifications**
 
-#### Pre-reqs
+## Pre-reqs
 
 - [Azure SQL DB Data Source](https://docs.microsoft.com/en-us/azure/purview/register-scan-azure-sql-database#register-an-azure-sql-database-data-source) has been registered with Purview (one-time activity)
 - A [Scan](https://docs.microsoft.com/en-us/azure/purview/register-scan-azure-sql-database#creating-and-running-a-scan) has been created on the Data Source, but not run (one-time activity):
@@ -46,7 +46,7 @@ Note that this could have been done using an [API call](https://github.com/tayga
 - We start with no Glossary Terms in this particular demo, but other Terms can exist (assuming no conflict):
   ![No GLossary Terms](images/5.png)
 
-#### Run container on Docker Desktop
+## Run container on Docker Desktop
 
 Clone this repo - then to run the container locally on Docker Desktop, run:
 
@@ -71,9 +71,9 @@ And the container can be called via Postman at `http://127.0.0.1:5000` as a `GET
 
 ![Call API](images/3.png)
 
-#### Demonstration
+## Demonstration
 
-##### Step 1: Create a list of glossary terms to track Custom/organization specific Classification Labels(using a minified JSON)
+### Step 1: Create a list of glossary terms to track Custom/organization specific Classification Labels(using a minified JSON)
 
 The following minified JSON payload represents our Organization's Custom Classification Labels:
 
@@ -108,7 +108,7 @@ We perform a `POST` request to `http://127.0.0.1:5000/api/glossary/terms` using 
 And we see the Glossary Terms get created within Purview:
 ![Glossary Terms get created](images/7.png)
 
-##### Step 2: Create an entire asset chain for an Azure SQL Database, and apply glossary terms to serve as Custom Data Classifications (using a minified JSON)
+### Step 2: Create an entire asset chain for an Azure SQL Database, and apply glossary terms to serve as Custom Data Classifications (using a minified JSON)
 
 The following minified JSON payload represents Azure SQL Database we are looking to onboard - containing the Application Specific Data Schema and declared classifications:
 
@@ -157,7 +157,7 @@ We perform a `POST` request to `http://127.0.0.1:5000/api/assets` using Postman 
 And we see the Assets get created within Purview (including the Columns and classifications):
 ![Assets get created](images/9.png)
 
-##### Step 3: Trigger Scan to establish end-to-end asset relationships and have Purview apply Classifications
+### Step 3: Trigger Scan to establish end-to-end asset relationships and have Purview apply Classifications
 
 The following JSON payload asks Purview to run a scan against the Data Source we already established in pre-reqs:
 
@@ -174,7 +174,7 @@ We perform a `POST` request to `http://127.0.0.1:5000/api/scan` using Postman wi
 And we see the scan begins on the asset:
 ![Scan begins](images/11.png)
 
-##### Step 4: Observe Assets with Custom Sensitivity labels (i.e. glossary terms) applied per column
+### Step 4: Observe Assets with Custom Sensitivity labels (i.e. glossary terms) applied per column
 
 Once the Scan is **Completed**:
 ![Scan Completed](images/14.png)
@@ -188,6 +188,6 @@ And the Asset is labelled at the column level:
 
 As desired.
 
-#### Additional Resources
+## Additional Resources
 
 - [Detecting SQL Column Decryption using Purview, Kafka, Kafdrop and Spark](https://www.rakirahman.me/purview-sql-cle-events-with-kafdrop/)
