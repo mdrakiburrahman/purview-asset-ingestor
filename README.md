@@ -26,15 +26,15 @@ Currently, the three top-level functionalities implemented:
 - [Azure SQL DB Data Source](https://docs.microsoft.com/en-us/azure/purview/register-scan-azure-sql-database#register-an-azure-sql-database-data-source) has been registered with Purview (one-time activity)
 - A [Scan](https://docs.microsoft.com/en-us/azure/purview/register-scan-azure-sql-database#creating-and-running-a-scan) has been created on the Data Source, but not run (one-time activity):
 
-![Save scan](images\1.png)
+![Save scan](images/1.png)
 
 Note that this could have been done using an [API call](https://github.com/tayganr/purviewcli#scan) as well if required.
 
 - We start with no Assets in this particular demo, but other assets can exist (assuming no conflict):
-  ![No Assets](images\4.png)
+  ![No Assets](images/4.png)
 
 - We start with no Glossary Terms in this particular demo, but other Terms can exist (assuming no conflict):
-![No GLossary Terms](images\5.png)
+![No GLossary Terms](images/5.png)
 </details>
 
 #### Run container on Docker Desktop
@@ -56,10 +56,10 @@ docker run `
 
 ```
 
-![Run container on Docker Desktop](images\2.png)
+![Run container on Docker Desktop](images/2.png)
 
 And the container can be called via Postman at `http://127.0.0.1:5000` as a `GET` request:
 
-![Call API](images\3.png)
+![Call API](images/3.png)
 
 #### Demonstration
