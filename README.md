@@ -7,8 +7,6 @@ A containerized [Python flask app](https://flask.palletsprojects.com/en/2.0.x/) 
 
 ## Table of Contents <!-- omit in toc -->
 
----
-
 - [Overview](#overview)
 - [Pre-reqs](#pre-reqs)
 - [Run container on Docker Desktop](#run-container-on-docker-desktop)
