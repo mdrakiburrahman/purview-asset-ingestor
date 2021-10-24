@@ -50,17 +50,5 @@ class AppService:
 
     def delete_task(self, request_task_id):
         tasksData = json.loads(self.tasksJSON)
-
-        flag = 0
-        for task in tasksData:
-            if task["id"] == request_task_id:
-                flag = 1
-                # Remove all occurences
-                tasksData = [task for task in tasksData if task["id"] != request_task_id]
-                break;
-        
-        if flag:
-            self.tasksJSON = json.dumps(tasksData)
-            return self.tasksJSON;
-        else:
-            return json.dumps({'message': 'task id not found'});
+        tasksData = [task for task in tasksData if task["id"] != request_task_id]
+        return json.dumps(tasksData);
