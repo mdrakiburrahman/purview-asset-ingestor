@@ -1,6 +1,6 @@
 # Azure Purview - Containerized app for declaring custom classification labels to assets
 
-A containerized [flask](api) running Python - interacting with Azure Purview using:
+A containerized [Python flask app](https://flask.palletsprojects.com/en/2.0.x/) that exposes an API for interacting with Azure Purview to implement Business Logic, using:
 
 - [Purview Python SDK](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/purview)
 - [Purview CLI](https://github.com/tayganr/purviewcli)
@@ -37,7 +37,7 @@ Note that this could have been done using an [API call](https://github.com/tayga
 ![No GLossary Terms](images\5.png)
 </details>
 
-#### Container Setup
+#### Run container on Docker Desktop
 
 Clone this repo - then to run the container locally on Docker Desktop, run:
 
@@ -56,7 +56,7 @@ docker run `
 
 ```
 
-![Run container](images\2.png)
+![Run container on Docker Desktop](images\2.png)
 
 And the container can be called via Postman at `http://127.0.0.1:5000` as a `GET` request:
 
