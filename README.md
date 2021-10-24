@@ -36,7 +36,7 @@ Currently, the three top-level functionalities implemented:
 - [Azure SQL DB Data Source](https://docs.microsoft.com/en-us/azure/purview/register-scan-azure-sql-database#register-an-azure-sql-database-data-source) has been registered with Purview (one-time activity)
 - A [Scan](https://docs.microsoft.com/en-us/azure/purview/register-scan-azure-sql-database#creating-and-running-a-scan) has been created on the Data Source, but not run (one-time activity):
 
-![Save scan](images/1.png)
+  ![Save scan](images/1.png)
 
 Note that this could have been done using an [API call](https://github.com/tayganr/purviewcli#scan) as well if required.
 
