@@ -10,6 +10,7 @@ A containerized [Python flask app](https://flask.palletsprojects.com/en/2.0.x/) 
 - [Overview](#overview)
 - [Pre-reqs](#pre-reqs)
 - [Run container on Docker Desktop](#run-container-on-docker-desktop)
+- [Run container on Kubernetes](#run-container-on-kubernetes)
 - [Demonstration](#demonstration)
   - [Step 1: Create a list of glossary terms to track Custom/organization specific Classification Labels(using a minified JSON)](#step-1-create-a-list-of-glossary-terms-to-track-customorganization-specific-classification-labelsusing-a-minified-json)
   - [Step 2: Create an entire asset chain for an Azure SQL Database, and apply glossary terms to serve as Custom Data Classifications (using a minified JSON)](#step-2-create-an-entire-asset-chain-for-an-azure-sql-database-and-apply-glossary-terms-to-serve-as-custom-data-classifications-using-a-minified-json)
@@ -71,6 +72,20 @@ And the container can be called via Postman at `http://127.0.0.1:5000` as a `GET
 
 ![Call API](images/3.png)
 
+## Run container on Kubernetes
+
+Use the [deployment.yaml](deployment.yaml) file to create a Kubernetes deployment:
+
+```bash
+# Create namespace, deployment and external service
+kubectl create namespace purview
+kubectl apply -f "deployment.yaml"
+kubectl expose deployment purview-asset-ingestor --type=LoadBalancer --name=purview-asset-ingestor-service -n purview
+
+# Tail logs
+kubectl logs purview-asset-ingestor-6c7d49b4bf-x4mrl -n purview --follow
+```
+
 ## Demonstration
 
 ### Step 1: Create a list of glossary terms to track Custom/organization specific Classification Labels(using a minified JSON)
@@ -102,10 +117,10 @@ The following minified JSON payload represents our Organization's Custom Classif
 ]
 ```
 
-We perform a `POST` request to `http://127.0.0.1:5000/api/glossary/terms` using Postman with the above JSON in the `Body`:
+We perform a `POST` request to `http://127.0.0.1:5000/api/glossary/terms` using Postman with the above JSON in the `Body`: <br>
 ![Call API](images/6.png)
 
-And we see the Glossary Terms get created within Purview:
+And we see the Glossary Terms get created within Purview: <br>
 ![Glossary Terms get created](images/7.png)
 
 ### Step 2: Create an entire asset chain for an Azure SQL Database, and apply glossary terms to serve as Custom Data Classifications (using a minified JSON)
@@ -191,3 +206,4 @@ As desired.
 ## Additional Resources
 
 - [Detecting SQL Column Decryption using Purview, Kafka, Kafdrop and Spark](https://www.rakirahman.me/purview-sql-cle-events-with-kafdrop/)
+- [Part 2: Purview classification drift notifier app](https://github.com/mdrakiburrahman/purview-classification-drift-notifier)
