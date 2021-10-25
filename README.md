@@ -79,6 +79,7 @@ Use the [deployment.yaml](deployment.yaml) file to create a Kubernetes deploymen
 ```bash
 # Create namespace, deployment and external service
 kubectl create namespace purview
+kubectl apply -f "secret-sample.yaml"
 kubectl apply -f "deployment.yaml"
 kubectl expose deployment purview-asset-ingestor --type=LoadBalancer --name=purview-asset-ingestor-service -n purview
 
