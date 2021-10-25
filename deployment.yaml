@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: purview-asset-ingestor
+  name: purview-asset-ingestor
+  namespace: purview
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: purview-asset-ingestor
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: purview-asset-ingestor
+    spec:
+      containers:
+        - image: mdrrakiburrahman/purview-asset-ingestor
+          imagePullPolicy: Always
+          name: purview-asset-ingestor
+          ports:
+            - containerPort: 5000
+          env:
+            - name: PURVIEW_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: purview-secret
+                  key: PURVIEW_NAME
+            - name: AZURE_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: purview-secret
+                  key: AZURE_CLIENT_ID
+            - name: AZURE_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: purview-secret
+                  key: AZURE_CLIENT_SECRET
+            - name: AZURE_TENANT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: purview-secret
+                  key: AZURE_TENANT_ID
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: purview-secret
+  namespace: purview
+type: Opaque
+stringData:
+  PURVIEW_NAME: "your--purview--account"
+  AZURE_CLIENT_ID: "your--client--id"
+  AZURE_CLIENT_SECRET: "your--client--secret"
+  AZURE_TENANT_ID: "your--tenant"
+  EVENT_HUB_NAME: "atlas_entities"
+  EVENT_HUB_CONN_STR: "Endpoint=sb://your--purview--eh.servicebus.windows.net/;SharedAccessKeyName=AlternateSharedAccessKey;SharedAccessKey=your--access--key"
+  AZURE_STORAGE_CONN_STR: "your--storage--account--connstr"
+  AZURE_BLOB_CONTAINER: "your--storage--container"

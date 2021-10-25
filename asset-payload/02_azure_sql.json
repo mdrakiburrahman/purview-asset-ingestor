@@ -1,0 +1,36 @@
+{
+  "serverName": "aemigration",
+  "collectionId": "aia-purview-new",
+  "databaseName": "contosoHR_AE",
+  "schemaName": "dbo",
+  "table": {
+    "name": "Employees",
+    "columns": [
+      {
+        "name": "Salary",
+        "data_type": "varbinary",
+        "classification": "Contoso_IC_Confidential"
+      },
+      {
+        "name": "EmployeeID",
+        "data_type": "int",
+        "classification": "Contoso_IC_Internal"
+      },
+      {
+        "name": "LastName",
+        "data_type": "nvarchar",
+        "classification": "Contoso_IC_Confidential"
+      },
+      {
+        "name": "FirstName",
+        "data_type": "nvarchar",
+        "classification": "Contoso_IC_Confidential"
+      },
+      {
+        "name": "SSN",
+        "data_type": "varbinary",
+        "classification": "Contoso_IC_Sensitive"
+      }
+    ]
+  }
+}

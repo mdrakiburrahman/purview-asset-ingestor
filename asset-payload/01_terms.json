@@ -1,0 +1,22 @@
+[
+  {
+    "longDescription": "Passwords, access code, security questions or similar.",
+    "name": "Contoso_IC_Restricted"
+  },
+  {
+    "longDescription": "Sensitive Personal Info, Material Business Information",
+    "name": "Contoso_IC_Sensitive"
+  },
+  {
+    "longDescription": "Financial, Personal, Business, Product, Project or Proprietary Information.",
+    "name": "Contoso_IC_Confidential"
+  },
+  {
+    "longDescription": "Internal phone directory, employeed IDs, HR Policies, Client info not combined with PII",
+    "name": "Contoso_IC_Internal"
+  },
+  {
+    "longDescription": "Published public information that can be found on the internet.",
+    "name": "Contoso_IC_Public"
+  }
+]
