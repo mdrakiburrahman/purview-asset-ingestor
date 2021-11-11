@@ -17,6 +17,17 @@ class AppService:
         catalog_client = PurviewCatalogClient(endpoint=account_endpoint, credential=credential)
         return catalog_client
 
+    def delete_assets(self, json_payload):        
+        # Get guidassignments dict from JSON
+        guidAssignments = json_payload["guidAssignments"]
+
+        # Loop through dict values and print value
+        for key, value in guidAssignments.items():
+            self.delete_asset_via_guid(value)
+        
+        # return empty json response
+        return json.dumps({})
+
     def create_assets(self, json_payload):
         fullAsset = self.full_asset()  # Create a full asset
 
@@ -36,6 +47,9 @@ class AppService:
             classificationGuid = jmespath.search("[?name=='{}']".format(column["classification"]), terms)[0]["guid"]
             columnAsset = self.column_asset(json_payload["serverName"], json_payload["collectionId"], json_payload["databaseName"], json_payload["schemaName"], json_payload["table"]["name"], column["name"], column["data_type"], column["classification"], classificationGuid)
             fullAsset["entities"] += [columnAsset]
+
+        # Print asset
+        self.printer("Asset Post", fullAsset)
 
         # Create the assets
         response = self.CatalogClient.entity.create_or_update_entities(entities=fullAsset)
@@ -117,6 +131,21 @@ class AppService:
             }
         }
         return column
+
+    def delete_asset_via_guid(self, guid):
+        cmd = "pv entity delete --guid={}".format(guid)
+        stream = os.popen(cmd)
+
+        # Catch errors
+        try:
+            response = json.loads(stream.read())
+            self.printer("Purview Response", response)
+        except:
+            response = "guid = {} does not exist!".format(guid)
+            print(response)
+            pass
+
+        return response
 
     def run_scan(self, dataSourceName, scanName):
         # Call Purview CLI since the Python SDK can't call scans at the moment it seems

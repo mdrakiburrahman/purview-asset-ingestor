@@ -26,6 +26,12 @@ def create_assets():
     appService.printer("Client Request", request_data)
     return appService.create_assets(request_data)
 
+@app.route('/api/assets', methods=['DELETE'])
+def delete_assets():
+    request_data = request.get_json()
+    appService.printer("Client Request", request_data)
+    return appService.delete_assets(request_data)
+
 @app.route('/api/scan', methods=['POST'])
 def run_scan():
     request_data = request.get_json()
