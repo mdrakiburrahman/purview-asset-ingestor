@@ -43,10 +43,16 @@ class AppService:
         terms = json.loads(self.get_default_glossary_terms(silent=True))
 
         # Append each column asset to the full asset
-        for column in json_payload["table"]["columns"]:
-            classificationGuid = jmespath.search("[?name=='{}']".format(column["classification"]), terms)[0]["guid"]
-            columnAsset = self.column_asset(json_payload["serverName"], json_payload["collectionId"], json_payload["databaseName"], json_payload["schemaName"], json_payload["table"]["name"], column["name"], column["data_type"], column["classification"], classificationGuid)
-            fullAsset["entities"] += [columnAsset]
+
+        # Try catch block
+        try:
+            for column in json_payload["table"]["columns"]:
+                classificationGuid = jmespath.search("[?name=='{}']".format(column["classification"]), terms)[0]["guid"]
+                columnAsset = self.column_asset(json_payload["serverName"], json_payload["collectionId"], json_payload["databaseName"], json_payload["schemaName"], json_payload["table"]["name"], column["name"], column["data_type"], column["classification"], classificationGuid)
+                fullAsset["entities"] += [columnAsset]
+        except:
+            # Columns not in payload - proceed without
+            pass
 
         # Print asset
         self.printer("Asset Post", fullAsset)
